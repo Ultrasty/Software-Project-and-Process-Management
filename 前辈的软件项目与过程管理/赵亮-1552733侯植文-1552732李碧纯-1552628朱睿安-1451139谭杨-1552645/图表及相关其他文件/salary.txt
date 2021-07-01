@@ -1,0 +1,29 @@
+Revenues ：
+reduced human costs(8x6000+3x8000+3x5000+2292x8+3056x3+3x1910=120234) 
+increasd sales(200000) 
+phone costs(30000)
+
+costs of goods sold：
+Labour costs + Subcontracting + Project team and office costs + training
+
+costs of service sold:
+operating and maintenance people salary 6x12000 涨
+water + electric 5000/月
+counter people 2x6000 2292
+dispatcher 2x8000/月 3056
+extra transportation cost 6000/月
+modify 2w/3月
+
+salary：
+2 customers service 5000/月 1910五险一金
+manager 2W/月    8041.39
+5 sellers 6000/月 2292五险一金
+
+Selling expense:
+10% Revenues
+
+Depreciation:
+soft+hard+net
+
+other expense: 21000/月
+

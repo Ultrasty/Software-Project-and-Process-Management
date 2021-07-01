@@ -1,0 +1,8 @@
+.ivu-menu-vertical{
+    margin-right: 0 !important;
+    width: 100% !important;
+}
+
+#side-navigation .ivu-col,.ivu-col-span-8{
+    width: 15%;
+}

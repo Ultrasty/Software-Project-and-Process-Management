@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Counter</title>
+    <link rel="stylesheet" href="../css/iview.css"/>
+    <link rel="stylesheet" href="../css/counter.css">
+
+    <script src="../js/lib/jquery-3.2.1.min.js"></script>
+    <script src="../js/lib/vue.min.js"></script>
+    <script src="../js/lib/iview.min.js"></script>
+    <script src="../js/counter.js"></script>
+    <script>
+        $(document).ready(function () {
+            counter.init();
+        })
+
+    </script>
+</head>
+<body>
+    <row>
+        <div id="top-navigation">
+            <i-menu @on-select='click' mode="horizontal" :theme="theme" active-name="people" style="z-index: 901;">
+                <menu-item name="people">
+                    <icon type="ios-people"></icon>
+                    用户管理
+                </menu-item>
+                <submenu name="2">
+                    <template slot="title">
+                        <icon type="ios-search-strong"></icon>
+                        订单管理
+                    </template>
+                    <menu-item name="add">添加订单</menu-item>
+                    <menu-item name="delete">删除订单</menu-item>
+                </submenu>
+                <menu-item name="equipment">
+                    <icon type="model-s"></icon>
+                    设备管理
+                </menu-item>
+                <i-button type="error" style="float: right; margin-top: 1.5%; margin-right: 1%;">退出</i-button>
+            </i-menu>
+        </div>
+    </row>
+    <row>
+        <div id="body">
+            <div id="side-navigation">
+                <i-col span="8">
+                    <i-menu :theme="theme" :active-name="active" @on-select="click">
+                        <menu-item name="租借用户">租借用户</menu-item>
+                        <menu-item name="卡车司机">卡车司机</menu-item>
+                    </i-menu>
+                    <i-input size="large" v-model="inputVal" @on-enter="enter" style="width: 80%; margin-left: 5%;">
+                        <span slot="prepend">ID</span>
+                    </i-input>
+                </i-col>
+            </div>
+            <div id="content">
+                <i-table :columns="columns" :data="row" @on-row-dblclick="dbclick" :loading="loading" stripe="true"></i-table>
+            </div>
+            <div id="drivers" hidden="hidden">
+                <i-table :columns="columns" :data="row" @on-row-dblclick="dbclick" stripe="true"></i-table>
+            </div>
+            <div id="equipment" hidden="hidden">
+                <i-table :columns="columns" :data="row" @on-row-dblclick="dbclick" stripe="true"></i-table>
+            </div>
+        </div>
+    </row>
+    <modal id="add" v-model="open" title="添加合同" @on-ok="Ok">
+        <i-input size="large" style="width: 80%; margin-left: 5%;" @on-enter="show">
+            <span slot="prepend">用户ID</span>
+        </i-input>
+        <i-input size="large" v-model="name" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">姓名</span>
+        </i-input>
+        <i-input size="large" v-model="address" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">住址</span>
+        </i-input>
+        <i-input size="large" v-model="city" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">城市</span>
+        </i-input>
+        <i-input size="large" v-model="zip" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">邮编</span>
+        </i-input>
+        <i-input size="large" v-model="state" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">州</span>
+        </i-input>
+        <i-input size="large" v-model="equipment" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">设备信息</span>
+        </i-input>
+        <i-input size="large" v-model="days" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">租期</span>
+        </i-input>
+        <i-input size="large" v-model="date" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">还设备日</span>
+        </i-input>
+        <i-input size="large" v-model="type" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">借/还</span>
+        </i-input>
+    </modal>
+    <modal id="delete" v-model="open" title="删除合同" @on-ok="Ok">
+        <i-input size="large" style="width: 80%; margin-left: 5%;" @on-enter="show">
+            <span slot="prepend">ID</span>
+        </i-input>
+        <i-input size="large" v-model="name" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">姓名</span>
+        </i-input>
+        <i-input size="large" v-model="address" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">住址</span>
+        </i-input>
+        <i-input size="large" v-model="city" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">城市</span>
+        </i-input>
+        <i-input size="large" v-model="zip" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">邮编</span>
+        </i-input>
+        <i-input size="large" v-model="state" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">州</span>
+        </i-input>
+        <i-input size="large" v-model="equipment" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">设备信息</span>
+        </i-input>
+        <i-input size="large" v-model="days" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">租期</span>
+        </i-input>
+        <i-input size="large" v-model="date" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">还设备日</span>
+        </i-input>
+        <i-input size="large" v-model="type" style="width: 80%; margin-left: 5%;">
+            <span slot="prepend">借/还</span>
+        </i-input>
+    </modal>
+    <modal id="dispatch" v-model="open" title="分配任务" @on-ok="Ok">
+        <i-select size="large" v-model="selectValue" style="width:200px">
+            <i-option v-for="item in drivers" :value="item.value" :key="item.value">{{ '姓名:' + item.value + ' ID:' + item.id + ' 距离:' + item.distance }}</i-option>
+        </i-select>
+    </modal>
+    <modal id="equipment-map" v-model="open" title="装备存储分布" @on-ok="Ok">
+        <img style="width: 100%;" src="../img/pos.png"/>
+    </modal>
+</body>
+</html>

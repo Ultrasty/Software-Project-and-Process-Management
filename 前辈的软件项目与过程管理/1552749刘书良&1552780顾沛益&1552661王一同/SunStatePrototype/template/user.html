@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+    <link rel="stylesheet" href="../css/iview.css"/>
+    <link rel="stylesheet" href="../css/counter.css">
+
+    <script src="../js/lib/jquery-3.2.1.min.js"></script>
+    <script src="../js/lib/vue.min.js"></script>
+    <script src="../js/lib/iview.min.js"></script>
+    <script src="../js/user.js"></script>
+    <script>
+        $(document).ready(function () {
+            user.init();
+        })
+    </script>
+</head>
+<body>
+<row>
+    <div id="top-navigation">
+        <i-menu @on-select='click' mode="horizontal" :theme="theme" active-name="prople" style="z-index: 901;">
+            <menu-item name="people">
+                <icon type="ios-person"></icon>
+                历史纪录
+            </menu-item>
+            <submenu name="2">
+                <template slot="title">
+                    <icon type="ios-search-strong"></icon>
+                    订单管理
+                </template>
+                <menu-item name="add">添加订单</menu-item>
+                <menu-item name="delete">删除订单</menu-item>
+            </submenu>
+            <i-button type="error" style="float: right; margin-top: 1.5%; margin-right: 1%;">退出</i-button>
+        </i-menu>
+    </div>
+    <div id="content">
+        <i-table :columns="columns" :data="row" @on-row-dblclick="dbclick" stripe="true"></i-table>
+    </div>
+</row>
+</body>
+</html>

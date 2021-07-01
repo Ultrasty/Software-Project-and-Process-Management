@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manager</title>
+    <link rel="stylesheet" href="../css/iview.css"/>
+    <link rel="stylesheet" href="../css/counter.css">
+
+    <script src="../js/lib/jquery-3.2.1.min.js"></script>
+    <script src="../js/lib/vue.min.js"></script>
+    <script src="../js/lib/iview.min.js"></script>
+    <script src="../js/manager.js"></script>
+    <script>
+        $(document).ready(function () {
+            manager.init();
+        })
+    </script>
+</head>
+<body>
+    <div id="top-navigation">
+        <i-menu @on-select='click' mode="horizontal" :theme="theme" active-name="prople" style="z-index: 901;">
+            <menu-item name="statistic">
+                <icon type="ios-person"></icon>
+                经济图表
+            </menu-item>
+            <submenu name="depos">
+                <template slot="title">
+                    <icon type="ios-search-strong"></icon>
+                    仓库收支
+                </template>
+                <menu-item name="California">California</menu-item>
+                <menu-item name="Texas">Texas</menu-item>
+                <menu-item name="Nevada">Nevada</menu-item>
+                <menu-item name="Utah">Utah</menu-item>
+                <menu-item name="Colorado">Colorado</menu-item>
+                <menu-item name="Arizona">Arizona</menu-item>
+                <menu-item name="New Mexico">New Mexico</menu-item>
+                <menu-item name="Oklahoma">Oklahoma</menu-item>
+            </submenu>
+            <i-button type="error" style="float: right; margin-top: 1.5%; margin-right: 1%;">退出</i-button>
+        </i-menu>
+    </div>
+    <div id="body">
+        <div id="side-navigation">
+            <i-col span="8">
+                <i-menu :theme="theme" :active-name="active" @on-select="click">
+                    <menu-item name="1">2018年</menu-item>
+                    <menu-item name="2">2019年</menu-item>
+                    <menu-item name="3">2020年</menu-item>
+                    <menu-item name="4">2021年</menu-item>
+                </i-menu>
+                <i-input size="large" v-model="inputVal" @on-enter="enter" style="width: 80%; margin-left: 5%;">
+                    <span slot="prepend">年分</span>
+                </i-input>
+            </i-col>
+        </div>
+        <div id="content">
+            <div id="statistic" v-if="showing">
+                <img src="../img/statistic1.png" style="width: 85%;"/>
+                <!--<img src="../img/statistic2.png" style="width: 85%;"/>-->
+            </div>
+            <div id="report" v-if="!showing">
+                <img src="../img/repos.png" style="width: 85%;"/>
+                <img src="../img/flow.png" style="width: 80%; margin-left: 20%;"/>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
